@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
-            $table->string('type'); // single | multiple | proposed | short
-            $table->integer('proposed_count')->nullable();
+            $table->integer('type')->defautl(0); // 0 QRU | 1 QCM | 2 QRP (longue ou courte?) | 3 QROC | 4 QZONE
+            $table->integer('proposed_count')->nullable(); //nombre d'items proposé
+            $table->boolean('stand_alone')->default('1'); // 1 QI | 0 Dossier
             $table->text('body');
             $table->text('correction')->nullable();
-            $table->string('status')->default('draft'); // draft | in_review | finalized | rejected
+            $table->text('expected_answer')->nullable();
+            $table->text('click_zone')->nullable();
+            $table->integer('status')->default('0'); // 0 draft | 1 in_review | 2 finalized
             $table->timestamp('finalized_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
