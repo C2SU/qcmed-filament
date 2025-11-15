@@ -15,9 +15,10 @@ class User extends Authenticatable implements FilamentUser
     use HasFactory, Notifiable;
 
     // Role constants A RECHECKER PLUS TARD ALED
-    const ROLE_USER = 1;
-    const ROLE_STUDENT = 2;
-    const ROLE_ADMIN = 3;
+    const ROLE_SUPERADMIN = 1;
+    const ROLE_ADMIN = 2;
+    const ROLE_REDACELEC = 3;
+    const ROLE_STUDENT = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -60,6 +61,10 @@ class User extends Authenticatable implements FilamentUser
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role === self::ROLE_ADMIN;
+        return match($panel->getId()) {
+            'admin' => in_array($this->role, [self::ROLE_SUPERADMIN, self::ROLE_ADMIN, self::ROLE_REDACELEC]),
+            'student' => $this->role === self::ROLE_STUDENT,
+            default => false,
+        };
     }
 }
