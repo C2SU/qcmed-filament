@@ -2,7 +2,16 @@
 
 namespace App\Filament\Resources\Questions\Schemas;
 
+use App\Models\Chapters;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+
 
 class QuestionForm
 {
@@ -10,7 +19,39 @@ class QuestionForm
     {
         return $schema
             ->components([
-                //
+                TextInput::make("name"),
+
+                RichEditor::make("body"),
+
+
+
+                Select::make("chapter_id")
+                    ->label("Chapitre")
+                    ->options(Chapters::query()->pluck('title', 'id'))
+                    ->searchable()
+                    ->loadingMessage('Chargement des chapitres...')
+                    ->noSearchResultsMessage('Pas de chapitre trouvé.')
+                    ->optionsLimit(10),
+
+
+                Select::make("type")
+                    ->options([
+                        "0" => "QCM/QRU/QRP",
+                        "1" => "QROC",
+                        "2" => "QZONE",
+                    ])
+                    ->default("0")
+                    ->live(),
+                
+                
+                Grid::make(2)
+                    ->schema(fn (Get $get): array => match ($get('type')) {
+                        "0" => [Repeater::make("expected_answer")],
+                        "2" => [FileUpload::make("image"),],
+                        "1" => [TextInput::make("expected_answer")],
+                        
+                    }),
+            
             ]);
     }
 }
