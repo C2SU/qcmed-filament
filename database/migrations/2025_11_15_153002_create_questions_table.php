@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
-            $table->integer('type')->defautl(0); // 0 QRU | 1 QCM | 2 QRP (longue ou courte?) | 3 QROC | 4 QZONE
+            $table->integer('type')->defautl(0); // 0 QCM | 1 QROC | 2 QZONE
             $table->integer('proposed_count')->nullable(); //nombre d'items proposé
             $table->boolean('stand_alone')->default('1'); // 1 QI | 0 Dossier
             $table->text('body');
