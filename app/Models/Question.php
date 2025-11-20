@@ -41,7 +41,7 @@ class Question extends Model
 
     public function chapter()
     {
-        return $this->belongsTo(Chapters::class);
+        return $this->belongsTo(Chapter::class);
     }
 
     public function dossier()

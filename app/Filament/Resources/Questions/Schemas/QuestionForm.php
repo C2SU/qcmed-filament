@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Questions\Schemas;
 
-use App\Models\Chapters;
+use App\Models\Chapter;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -27,7 +27,7 @@ class QuestionForm
 
                 Select::make("chapter_id")
                     ->label("Chapitre")
-                    ->options(Chapters::query()->pluck('title', 'id'))
+                    ->options(Chapter::query()->pluck('title', 'id'))
                     ->searchable()
                     ->loadingMessage('Chargement des chapitres...')
                     ->noSearchResultsMessage('Pas de chapitre trouvé.')
