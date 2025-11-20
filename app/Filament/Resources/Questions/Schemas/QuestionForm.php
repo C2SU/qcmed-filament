@@ -44,9 +44,27 @@ class QuestionForm
                     ->live(),
                 
                 
-                Grid::make(2)
+                Grid::make(1)
                     ->schema(fn (Get $get): array => match ($get('type')) {
-                        "0" => [Repeater::make("expected_answer")],
+                        "0" => [
+                            Repeater::make("expected_answer")
+                            ->schema([
+                                TextInput::make("lettre")
+                                ->distinct()
+                                ->disabled()
+                                ->default("A"),
+                                TextInput::make("texte"),
+                                TextInput::make("correction"),
+                                
+                            ])
+                            ->live()
+                            ->defaultItems(4)
+                            ->minItems(4)
+                            ->maxItems(20)
+                            ->columns(3),
+
+
+                    ],
                         "2" => [FileUpload::make("image"),],
                         "1" => [TextInput::make("expected_answer")],
                         
