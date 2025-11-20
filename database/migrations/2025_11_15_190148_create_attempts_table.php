@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->json('answers')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -7,7 +7,7 @@ use App\Filament\Resources\Chapters\Pages\EditChapters;
 use App\Filament\Resources\Chapters\Pages\ListChapters;
 use App\Filament\Resources\Chapters\Schemas\ChaptersForm;
 use App\Filament\Resources\Chapters\Tables\ChaptersTable;
-use App\Models\Chapters;
+use App\Models\Chapter;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ChaptersResource extends Resource
 {
-    protected static ?string $model = Chapters::class;
+    protected static ?string $model = Chapter::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
