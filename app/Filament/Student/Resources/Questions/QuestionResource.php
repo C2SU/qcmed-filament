@@ -5,6 +5,7 @@ namespace App\Filament\Student\Resources\Questions;
 use App\Filament\Student\Resources\Questions\Pages\CreateQuestion;
 use App\Filament\Student\Resources\Questions\Pages\EditQuestion;
 use App\Filament\Student\Resources\Questions\Pages\ListQuestions;
+use App\Filament\Student\Resources\Questions\Pages\ViewQuestion;
 use App\Filament\Student\Resources\Questions\Schemas\QuestionForm;
 use App\Filament\Student\Resources\Questions\Tables\QuestionsTable;
 use App\Models\Question;
@@ -45,8 +46,7 @@ class QuestionResource extends Resource
     {
         return [
             'index' => ListQuestions::route('/'),
-            'create' => CreateQuestion::route('/create'),
-            'edit' => EditQuestion::route('/{record}/edit'),
+            'view' => ViewQuestion::route('/{record}'),
         ];
     }
 

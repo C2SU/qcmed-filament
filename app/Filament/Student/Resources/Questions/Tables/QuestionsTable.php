@@ -2,14 +2,8 @@
 
 namespace App\Filament\Student\Resources\Questions\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
-use Filament\Tables\Columns\IconColumn;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class QuestionsTable
@@ -18,51 +12,43 @@ class QuestionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('chapter_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('chapter.numero')
+                    ->label('Item')
+                    ->sortable()
+                    ->searchable()
+                    ->formatStateUsing(fn ($state) => "Item {$state}")
+                    ->weight('bold'),
+                
+                TextColumn::make('title')
+                    ->label('Question')
+                    ->searchable()
+                    ->grow()
+                    ->wrap(),
+                
                 TextColumn::make('type')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('proposed_count')
-                    ->numeric()
-                    ->sortable(),
-                IconColumn::make('stand_alone')
-                    ->boolean(),
-                TextColumn::make('status')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('finalized_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Type')
+                    ->badge()
+                    ->formatStateUsing(fn ($state) => match($state) {
+                        '0' => 'QCM/QRU/QRP',
+                        '1' => 'QROC',
+                        '2' => 'QZONE',
+                        default => 'Inconnu'
+                    })
+                    ->color(fn ($state) => match($state) {
+                        '0' => 'success',
+                        '1' => 'info',
+                        '2' => 'warning',
+                        default => 'gray'
+                    }),
             ])
             ->filters([
-                TrashedFilter::make(),
+                //
             ])
             ->recordActions([
-                EditAction::make(),
+                ViewAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }
