@@ -57,6 +57,11 @@ class Question extends Model
         return $this->belongsTo(Dossier::class);
     }
 
+    public function learningObjectives()
+    {
+        return $this->belongsToMany(LearningObjective::class);
+    }
+
     // public function choices()
     // {
     //     return $this->hasMany(Choice::class);
