@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Questions\Schemas;
 
 use App\Models\Chapter;
+use App\Models\LearningObjective;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -39,7 +40,35 @@ class QuestionForm
                     ->searchable()
                     ->loadingMessage('Chargement des chapitres...')
                     ->noSearchResultsMessage('Pas de chapitre trouvé.')
-                    ->optionsLimit(10),
+                    ->optionsLimit(10)
+                    ->live()
+                    ->afterStateUpdated(fn (callable $set) => $set('learningObjectives', [])),
+
+                Select::make("learningObjectives")
+                    ->label("Objectifs d'apprentissage")
+                    ->multiple()
+                    ->relationship('learningObjectives', 'intitule')
+                    ->options(function (callable $get) {
+                        $chapterId = $get('chapter_id');
+                        if (!$chapterId) {
+                            return [];
+                        }
+                        
+                        $chapter = Chapter::find($chapterId);
+                        if (!$chapter) {
+                            return [];
+                        }
+                        
+                        return LearningObjective::where('chapter_numero', $chapter->numero)
+                            ->get()
+                            ->mapWithKeys(fn ($objective) => [
+                                $objective->id => "[{$objective->rang}] {$objective->rubrique} - " . \Illuminate\Support\Str::limit($objective->intitule, 100)
+                            ]);
+                    })
+                    ->searchable()
+                    ->preload()
+                    ->hidden(fn (callable $get) => !$get('chapter_id'))
+                    ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
 
 
                 Select::make("type")
