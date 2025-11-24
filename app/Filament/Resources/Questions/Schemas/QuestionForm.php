@@ -42,7 +42,8 @@ class QuestionForm
                     ->optionsLimit(10)
                     ->required()
                     ->live()
-                    ->afterStateUpdated(fn (callable $set) => $set('learningObjectives', [])),
+                    ->afterStateUpdated(fn (callable $set) => $set('learningObjectives', []))
+                    ->columnSpan(3),
 
                 Select::make("type")
                     ->label("Type de question")
@@ -60,36 +61,39 @@ class QuestionForm
                         '0' => 'Brouillon',
                         '1' => 'En révisions',
                         '2' => 'Finie'
-                    ]),
+                    ])
+                    ->grouped()
+                    ->required()
+                    ->columnSpan(2),
                 
 
 
-                Select::make("learningObjectives")
-                    ->label("Objectifs d'apprentissage")
-                    ->multiple()
-                    ->relationship('learningObjectives', 'intitule')
-                    ->options(function (callable $get) {
-                        $chapterId = $get('chapter_id');
-                        if (!$chapterId) {
-                            return [];
-                        }
+                // Select::make("learningObjectives")
+                //     ->label("Objectifs d'apprentissage")
+                //     ->multiple()
+                //     ->relationship('learningObjectives', 'intitule')
+                //     ->options(function (callable $get) {
+                //         $chapterId = $get('chapter_id');
+                //         if (!$chapterId) {
+                //             return [];
+                //         }
                         
-                        $chapter = Chapter::find($chapterId);
-                        if (!$chapter) {
-                            return [];
-                        }
+                //         $chapter = Chapter::find($chapterId);
+                //         if (!$chapter) {
+                //             return [];
+                //         }
                         
-                        return LearningObjective::where('chapter_numero', $chapter->numero)
-                            ->get()
-                            ->mapWithKeys(fn ($objective) => [
-                                $objective->id => "[{$objective->rang}] {$objective->rubrique} - " . \Illuminate\Support\Str::limit($objective->intitule, 100)
-                            ]);
-                    })
-                    ->searchable()
-                    ->preload()
-                    ->columnSpanFull()
-                    ->hidden(fn (callable $get) => !$get('chapter_id'))
-                    ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
+                //         return LearningObjective::where('chapter_numero', $chapter->numero)
+                //             ->get()
+                //             ->mapWithKeys(fn ($objective) => [
+                //                 $objective->id => "[{$objective->rang}] {$objective->rubrique} - " . \Illuminate\Support\Str::limit($objective->intitule, 100)
+                //             ]);
+                //     })
+                //     ->searchable()
+                //     ->preload()
+                //     ->columnSpanFull()
+                //     ->hidden(fn (callable $get) => !$get('chapter_id'))
+                //     ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
 
                 RichEditor::make("body")
                     ->label("Énoncé de la question")
@@ -107,6 +111,10 @@ class QuestionForm
                 Grid::make(1)
                     ->schema(fn (Get $get): array => match (strval($get('type'))) {
                         "0" => [
+                            Toggle::make("proposed_count")
+                            ->columnSpanFull()
+                            ->label("Afficher le nombre de propositions à cocher pour l'étudiant "),
+
                             Repeater::make("expected_answer")
                             ->schema([
                                 TextInput::make("proposition")
@@ -140,13 +148,7 @@ class QuestionForm
                             ->maxItems(20)
                             ->columns(6)
                             ->addActionLabel('Ajouter une proposition')
-                            ->columnSpan(4),
-
-                            Toggle::make("proposed_count")
-                            ->columnSpan(2)
-                            ->label("Afficher le nombre de propositions à cocher pour l'étudiant ")
-                            ->inline(False),
-
+                            ->columnSpanFull()
                     ],
                         "2" => [FileUpload::make("image"),],
                         "1" => [TextInput::make("expected_answer")],
