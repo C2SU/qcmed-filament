@@ -6,7 +6,6 @@ use App\Models\Chapter;
 use App\Models\LearningObjective;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Closure;
-use Filament\Forms\Components\Field;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -20,13 +19,9 @@ use Filament\Schemas\Schema;
 
 class QuestionForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function schemaArray() : array
     {
-        return $schema
-            ->columns(6)
-            ->components([
-                
-
+        return [     
                 Select::make("chapter_id")
                     ->label("Chapitre")
                     ->options(function () {
@@ -102,7 +97,7 @@ class QuestionForm
                     ->toolbarButtons([
                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                ['blockquote', 'bulletList', 'orderedList'],
+                                ['bulletList', 'orderedList'],
                                 ['attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
                                 ['undo', 'redo'],
                             ]),
@@ -158,6 +153,12 @@ class QuestionForm
                     ->columns(6),
                      
                     
-                            ]);
+                ];
+    }
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->columns(6)
+            ->components(self::schemaArray());
     } 
 }
