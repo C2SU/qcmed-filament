@@ -12,6 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Form;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class DossierForm
 {
@@ -40,6 +41,16 @@ class DossierForm
                     ->reorderableWithButtons()
                     ->columnSpanFull()
                     ->collapsible()
+                    ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
+                        $data['user_id'] = Auth::id();
+
+                        return $data;
+                    })
+                    ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
+                        $data['user_id'] = Auth::id();
+
+                        return $data;
+                    })
                     ->defaultItems(5)
                     ->minItems(3)
                     ->maxItems(8)
