@@ -61,8 +61,6 @@ class QuestionForm
                     ->required()
                     ->columnSpan(2),
                 
-
-
                 // Select::make("learningObjectives")
                 //     ->label("Objectifs d'apprentissage")
                 //     ->multiple()
@@ -125,7 +123,7 @@ class QuestionForm
                                 ->inline(false),
                             ])
                             ->rules([
-                                        fn (): Closure => function (string $attribute, $value, Closure $fail) {
+                                        fn (): Closure => function ($value, Closure $fail) {
                                             $atLeastOneCorrectAnswer = False;
                                             foreach($value as $item)
                                             if ($item["vrai"]==True ) {
