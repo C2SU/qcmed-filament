@@ -10,6 +10,11 @@ class Dossier extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        "title",
+        "description",
+    ];
+
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
