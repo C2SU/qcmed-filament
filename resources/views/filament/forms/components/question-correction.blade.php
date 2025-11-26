@@ -28,10 +28,10 @@
             }
         @endphp
         
-        <div class="p-4 rounded-lg border-2 {{ $bgColor }}">
+        <div class="p-4 rounded-lg border-2" style="@if($isCorrect && $isSelected)background-color:#d1fae5;border-color:#10b981;@elseif($isCorrect && !$isSelected)background-color:#fee2e2;border-color:#ef4444;@elseif(!$isCorrect && $isSelected)background-color:#fee2e2;border-color:#ef4444;@else background-color:#f3f4f6;border-color:#d1d5db;@endif">
             <div class="flex items-start gap-3">
                 @if($icon)
-                    <span class="text-xl font-bold {{ $iconColor }} flex-shrink-0">{{ $icon }}</span>
+                    <span class="text-xl font-bold flex-shrink-0" style="@if($isCorrect && $isSelected)color:#059669;@elseif($isCorrect && !$isSelected)color:#dc2626;@elseif(!$isCorrect && $isSelected)color:#dc2626;@endif">{{ $icon }}</span>
                 @endif
                 
                 <div class="flex-1">
@@ -60,6 +60,20 @@
                     <span class="font-bold">{{ chr(65 + $idx) }}</span>{{ !$loop->last ? ', ' : '' }}
                 @endforeach
             </p>
+            <p class="text-sm font-medium text-green-900 mt-2">
+                ✅ Réponses correctes :
+                @php
+                    $corrects = [];
+                    foreach($expected_answer as $i => $ans) {
+                        if($ans['vrai'] ?? false) $corrects[] = chr(65 + $i);
+                    }
+                @endphp
+                @foreach($corrects as $letter)
+                    <span class="font-bold">{{ $letter }}</span>{{ !$loop->last ? ', ' : '' }}
+                @endforeach
+            </p>
         </div>
     @endif
 </div>
+
+{{-- Bouton custom retiré, à remplacer par un bouton Filament standard dans la page ou le resource --}}

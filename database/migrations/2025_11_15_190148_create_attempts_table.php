@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->json('answers')->nullable();
+            $table->integer('score')->default(0);
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
