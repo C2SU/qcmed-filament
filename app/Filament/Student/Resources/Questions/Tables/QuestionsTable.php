@@ -41,7 +41,9 @@ class QuestionsTable
                     }),
             ])
             ->filters([
-                //
+                \Filament\Tables\Filters\SelectFilter::make('chapter_id')
+                    ->label('Item')
+                    ->options(fn () => \App\Models\Chapter::query()->pluck('numero', 'id')),
             ])
             ->recordAction(null)
             ->recordUrl(fn ($record) => \App\Filament\Student\Resources\Questions\QuestionResource::getUrl('answer', ['record' => $record]))
