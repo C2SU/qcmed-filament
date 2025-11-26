@@ -30,7 +30,7 @@ class Question extends Model
 
     protected $casts = [
         'finalized_at' => 'datetime',
-        'click_zone' => 'array', // Caster le JSON en array
+        'click_zone' => 'array', // Caster le JSON en array - pourquoi?
         'expected_answer' => 'array', // Caster le JSON en array
     ];
 
@@ -61,12 +61,12 @@ class Question extends Model
 
     public function dossier()
     {
-        return $this->belongsTo(Dossier::class);
+        return $this->belongsTo(Dossier::class)->withDefault();
     }
 
     public function learningObjectives()
     {
-        return $this->belongsToMany(LearningObjective::class);
+        return $this->belongsToMany(LearningObjective::class)->withDefault();
     }
 
     // public function choices()
