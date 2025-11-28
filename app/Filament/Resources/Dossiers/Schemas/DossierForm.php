@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class DossierForm
 {
     public static function configure(Schema $schema): Schema
-    {   
+    {
         $questionFormSchema = QuestionForm::schemaArray();
         unset($questionFormSchema[2]);
 
@@ -39,7 +39,7 @@ class DossierForm
                     ->live()
                     ->required()
                     ->columnSpan(2),
-                
+
                 RichEditor::make("description")
                     ->columnSpanFull()
                     ->toolbarButtons([
@@ -60,12 +60,12 @@ class DossierForm
                     ->collapsible()
                     ->mutateRelationshipDataBeforeCreateUsing(function (array $data, Get $get): array {
                         $data['user_id'] = Auth::id();
-                        $data['status'] = $get("../../status");
+                        $data['status'] = $get("status");
                         return $data;
                     })
                     ->mutateRelationshipDataBeforeSaveUsing(function (array $data, Get $get): array {
                         $data['user_id'] = Auth::id();
-                        $data['status'] = $get("../../status");
+                        $data['status'] = $get("status");
                         return $data;
                     })
                     ->defaultItems(5)
@@ -74,7 +74,7 @@ class DossierForm
                     ->itemLabel(function (Repeater $component, array $state) :string {
                         $numeroQuestionActuelle = array_search(array_search($state, $component->getState()), array_keys($component->getState()))+1;
                     return "Question ".strval($numeroQuestionActuelle);
-                    })                
+                    })
                 ,
             ]);
     }
