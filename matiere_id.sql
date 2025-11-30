@@ -1,0 +1,44 @@
+CREATE TABLE IF NOT EXISTS matiere_id (
+  name TEXT PRIMARY KEY
+);
+
+INSERT INTO matieres_r2c (name) VALUES ('Anatomie et Cytologie Pathologiques');
+INSERT INTO matieres_r2c (name) VALUES ('Anesthésie - Réanimation');
+INSERT INTO matieres_r2c (name) VALUES ('Cancérologie');
+INSERT INTO matieres_r2c (name) VALUES ('Chirurgie Digestive');
+INSERT INTO matieres_r2c (name) VALUES ('CMF');
+INSERT INTO matieres_r2c (name) VALUES ('Dermatologie');
+INSERT INTO matieres_r2c (name) VALUES ('Douleurs - Soins Palliatifs');
+INSERT INTO matieres_r2c (name) VALUES ('Endocrinologie');
+INSERT INTO matieres_r2c (name) VALUES ('Génétique');
+INSERT INTO matieres_r2c (name) VALUES ('Gériatrie');
+INSERT INTO matieres_r2c (name) VALUES ('Gynécologie Médicale');
+INSERT INTO matieres_r2c (name) VALUES ('Gynécologie - Obstétrique');
+INSERT INTO matieres_r2c (name) VALUES ('Hématologie');
+INSERT INTO matieres_r2c (name) VALUES ('HGE');
+INSERT INTO matieres_r2c (name) VALUES ('Imagerie Médicale');
+INSERT INTO matieres_r2c (name) VALUES ('Immunopathologie');
+INSERT INTO matieres_r2c (name) VALUES ('Infectiologie');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Cardiovasculaire');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Générale');
+INSERT INTO matieres_r2c (name) VALUES ('MIR - Urgences');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Interne');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Légale - Médecine du Travail');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Moléculaire');
+INSERT INTO matieres_r2c (name) VALUES ('MPR');
+INSERT INTO matieres_r2c (name) VALUES ('Médecine Vasculaire');
+INSERT INTO matieres_r2c (name) VALUES ('Néphrologie');
+INSERT INTO matieres_r2c (name) VALUES ('Neurochirurgie');
+INSERT INTO matieres_r2c (name) VALUES ('Neurologie');
+INSERT INTO matieres_r2c (name) VALUES ('Nutrition');
+INSERT INTO matieres_r2c (name) VALUES ('Ophtalmologie');
+INSERT INTO matieres_r2c (name) VALUES ('ORL');
+INSERT INTO matieres_r2c (name) VALUES ('Orthopédie - Traumatologie');
+INSERT INTO matieres_r2c (name) VALUES ('Parasitologie');
+INSERT INTO matieres_r2c (name) VALUES ('Pédiatrie');
+INSERT INTO matieres_r2c (name) VALUES ('Pneumologie');
+INSERT INTO matieres_r2c (name) VALUES ('Psychiatrie - Addictologie');
+INSERT INTO matieres_r2c (name) VALUES ('Rhumatologie');
+INSERT INTO matieres_r2c (name) VALUES ('Santé Publique');
+INSERT INTO matieres_r2c (name) VALUES ('Thérapeutique');
+INSERT INTO matieres_r2c (name) VALUES ('Urologie');
