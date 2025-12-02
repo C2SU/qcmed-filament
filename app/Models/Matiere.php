@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Matiere extends Model
 {
-    protected $table = 'matieres';
+    protected $table = 'matiere_id';
 
     protected $fillable = [
         'name',

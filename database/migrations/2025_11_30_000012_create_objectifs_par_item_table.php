@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('objectifs_par_item', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chapitre_id')->constrained('chapters')->onDelete('cascade');
+            $table->foreignId('chapitre_id')->constrained('chapitre_id')->onDelete('cascade');
             $table->text('objectif');
             $table->timestamps();
         });

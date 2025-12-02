@@ -16,7 +16,7 @@ class Question extends Model
     protected $fillable = [
         'user_id',
         'dossier_id',
-        'chapter_id',
+        'chapitre_id',
         'type',
         'proposed_count',
         'stand_alone',

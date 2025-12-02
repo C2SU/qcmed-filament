@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
+            $table->foreignId('chapitre_id')->constrained('chapitre_id')->cascadeOnDelete();
             $table->integer('type')->defautl(0); // 0 QCM | 1 QROC | 2 QZONE
             $table->integer('proposed_count')->nullable(); // montrer à l'étudiant ou pas le nombre de réponses vraies
             $table->boolean('stand_alone')->default('1'); // 1 QI | 0 Dossier

@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('chapitre_par_matiere', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chapitre_id')->constrained('chapters')->onDelete('cascade');
+            $table->foreignId('chapitre_id')->constrained('chapitre_id')->onDelete('cascade');
             $table->integer('matiere_id');
             $table->timestamps();
             $table->unique(['chapitre_id', 'matiere_id']);
