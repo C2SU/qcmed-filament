@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('chapitres_par_matiere', function (Blueprint $table) {
+        Schema::create('chapitre_matiere', function (Blueprint $table) {
             $table->id();
             $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
             $table->foreignId('chapitre_id')->constrained('chapters')->onDelete('cascade');
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('chapitres_par_matiere');
+        Schema::dropIfExists('chapitre_matiere');
     }
 };

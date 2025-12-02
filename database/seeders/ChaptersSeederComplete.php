@@ -13,6 +13,6 @@ class ChaptersSeederComplete extends Seeder
      */
     public function run(): void
     {
-        DB::unprepared(file_get_contents(database_path('import_chapters.sql')));
+        DB::unprepared(file_get_contents(database_path('chapitre_id.sql')));
     }
 }
