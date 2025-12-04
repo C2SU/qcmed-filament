@@ -7,8 +7,8 @@ use App\Models\LearningObjective;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Closure;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -61,45 +61,37 @@ class QuestionForm
                     ->required()
                     ->columnSpan(2),
 
-                // Select::make("learningObjectives")
-                //     ->label("Objectifs d'apprentissage")
-                //     ->multiple()
-                //     ->relationship('learningObjectives', 'intitule')
-                //     ->options(function (callable $get) {
-                //         $chapterId = $get('chapter_id');
-                //         if (!$chapterId) {
-                //             return [];
-                //         }
+                Select::make("learningObjectives")
+                    ->label("Objectifs d'apprentissage")
+                    ->multiple()
+                    ->relationship('learningObjectives', 'intitule')
+                    ->options(function (callable $get) {
+                        $chapterId = $get('chapter_id');
+                        if (!$chapterId) {
+                            return [];
+                        }
 
-                //         $chapter = Chapter::find($chapterId);
-                //         if (!$chapter) {
-                //             return [];
-                //         }
+                        $chapter = Chapter::find($chapterId);
+                        if (!$chapter) {
+                            return [];
+                        }
 
-                //         return LearningObjective::where('chapter_numero', $chapter->numero)
-                //             ->get()
-                //             ->mapWithKeys(fn ($objective) => [
-                //                 $objective->id => "[{$objective->rang}] {$objective->rubrique} - " . \Illuminate\Support\Str::limit($objective->intitule, 100)
-                //             ]);
-                //     })
-                //     ->searchable()
-                //     ->preload()
-                //     ->columnSpanFull()
-                //     ->hidden(fn (callable $get) => !$get('chapter_id'))
-                //     ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
-
-                RichEditor::make("body")
-                    ->label("Énoncé de la question")
-                    ->required()
+                        return LearningObjective::where('chapter_numero', $chapter->numero)
+                            ->get()
+                            ->mapWithKeys(fn ($objective) => [
+                                $objective->id => "[{$objective->rang}] {$objective->rubrique} - " . \Illuminate\Support\Str::limit($objective->intitule, 100)
+                            ]);
+                    })
+                    ->searchable()
+                    ->preload()
                     ->columnSpanFull()
-                    ->toolbarButtons([
-                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
-                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                ['bulletList', 'orderedList'],
-                                ['attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
-                                ['undo', 'redo'],
-                            ]),
+                    ->hidden(fn (callable $get) => !$get('chapter_id'))
+                    ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
 
+                MarkdownEditor::make("body")
+                    ->label("Énoncé de la question")
+                    ->columnSpanFull()
+                    ->required(),
 
                 Grid::make(1)
                     ->schema(fn (Get $get): array => match (strval($get('type'))) {
@@ -131,7 +123,7 @@ class QuestionForm
                                             }
                                             if ($atLeastOneCorrectAnswer == False){
 
-                                                $fail('Il faut mettre au moins une réponse vraie!.');
+                                                $fail('Il faut mettre au moins une réponse vraie!');
                                             }
                                         },
                                     ])
