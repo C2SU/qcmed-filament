@@ -49,6 +49,7 @@ class QuestionForm
                     ])
                     ->default("0")
                     ->required()
+                    ->columnSpan(1)
                     ->live(),
 
                 ToggleButtons::make('status')
@@ -85,8 +86,8 @@ class QuestionForm
                     ->searchable()
                     ->preload()
                     ->columnSpanFull()
-                    ->hidden(fn (callable $get) => !$get('chapter_id'))
-                    ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question'),
+                    ->helperText('Sélectionnez un ou plusieurs objectifs d\'apprentissage associés à cette question')
+                    ->maxItems(5),
 
                 MarkdownEditor::make("body")
                     ->label("Énoncé de la question")
@@ -98,7 +99,8 @@ class QuestionForm
                         "0" => [
                             Toggle::make("proposed_count")
                             ->columnSpanFull()
-                            ->label("Afficher le nombre de propositions à cocher pour l'étudiant "),
+                            ->label("Afficher le nombre de propositions à cocher pour l'étudiant ")
+                            ->helperText('Transforme le QCM en un QRU ou QRP court ou long'),
 
                             Repeater::make("expected_answer")
                             ->schema([
