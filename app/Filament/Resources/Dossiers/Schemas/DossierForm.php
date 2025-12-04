@@ -2,12 +2,10 @@
 
 namespace App\Filament\Resources\Dossiers\Schemas;
 
-use App\Filament\Resources\Questions\QuestionResource;
 use App\Filament\Resources\Questions\Schemas\QuestionForm;
 use Barryvdh\Debugbar\Facades\Debugbar;
-use Closure;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Form;
@@ -40,7 +38,7 @@ class DossierForm
                     ->required()
                     ->columnSpan(2),
 
-                RichEditor::make("description")
+                MarkdownEditor::make("description")
                     ->columnSpanFull()
                     ->toolbarButtons([
                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
