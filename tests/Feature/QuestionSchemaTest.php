@@ -8,18 +8,17 @@ use App\Filament\Resources\Questions\Pages\ListQuestions;
 use App\Models\User;
 use Database\Seeders\ChaptersSeeder;
 use Database\Seeders\ChaptersSeederComplete;
+use Filament\Forms\Components\Repeater;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-
 beforeEach(function () {
     $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
     actingAs($user);
 });
-
 
 test('can load the question create form', function () {
 
@@ -27,14 +26,8 @@ test('can load the question create form', function () {
         ->assertOk();
 });
 
-// test('can load the question edit form', function () {
-
-//     livewire(EditQuestion::class)
-//         ->assertOk();
-// });
-
 test('form has errors', function () {
-    $this->seed(ChaptersSeeder::class);
+    // $this->seed(ChaptersSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
             // 'title' => fake()->sentence(),
@@ -42,4 +35,199 @@ test('form has errors', function () {
         ])
         ->call("create")
         ->assertHasFormErrors();
+});
+
+test('form can create question', function() {
+    $undoRepeaterFake = Repeater::fake();
+    $this->seed(ChaptersSeeder::class);
+    livewire(CreateQuestion::class)
+        ->fillForm([
+            'chapter_id' => fake()->numberBetween(0,100),
+            'type' => 0,
+            'status' => 0, 
+            'body' => fake()->sentence(),
+            'proposed_count' => 1,
+            'expected_answer' => [
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [ 
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+            ]
+        ])
+        ->call("create")
+        ->assertHasNoFormErrors();
+        $undoRepeaterFake();
+});
+
+
+test('form has 20 max items error', function() {
+
+    $propositionsArray = [];
+    for ($i = 0; $i <= 20; $i++) {
+        $propositionsArray[$i] = [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+        ];
+    }
+
+    $undoRepeaterFake = Repeater::fake();
+    $this->seed(ChaptersSeeder::class);
+
+    livewire(CreateQuestion::class)
+        ->fillForm([
+            'chapter_id' => fake()->numberBetween(0,100),
+            'type' => 0,
+            'status' => 0, 
+            'body' => fake()->sentence(),
+            'proposed_count' => 1,
+            'expected_answer' => $propositionsArray
+        ])
+        ->call("create")
+        ->assertHasFormErrors();
+
+        $undoRepeaterFake();
+});
+
+test('at least 4 propositions required', function() {
+    $undoRepeaterFake = Repeater::fake();
+    $this->seed(ChaptersSeeder::class);
+    livewire(CreateQuestion::class)
+        ->fillForm([
+            'chapter_id' => fake()->numberBetween(0,100),
+            'type' => 0,
+            'status' => 0, 
+            'body' => fake()->sentence(),
+            'proposed_count' => 1,
+            'expected_answer' => [
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [ 
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+            ]
+        ])
+        ->call("create")
+        ->assertHasFormErrors(["expected_answer"]);
+        $undoRepeaterFake();
+});
+
+test('at least one true answer required', function() {
+    $undoRepeaterFake = Repeater::fake();
+    $this->seed(ChaptersSeeder::class);
+    livewire(CreateQuestion::class)
+        ->fillForm([
+            'chapter_id' => fake()->numberBetween(0,100),
+            'type' => 0,
+            'status' => 0, 
+            'body' => fake()->sentence(),
+            'proposed_count' => 1,
+            'expected_answer' => [
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>0
+                ],
+                [ 
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>0
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>0
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>0
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>0
+                ],
+            ]
+        ])
+        ->call("create")
+        ->assertHasFormErrors();
+        $undoRepeaterFake();
+});
+
+test('form has required errors', function() {
+    $undoRepeaterFake = Repeater::fake();
+    $this->seed(ChaptersSeeder::class);
+    livewire(CreateQuestion::class)
+        ->fillForm([
+            'type' => NULL,
+            'proposed_count' => 1,
+            'expected_answer' => [
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [ 
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ],
+            ]
+        ])
+        ->call("create")
+        ->assertHasFormErrors([
+            "chapter_id" => "required",
+            "type" => "required",
+            "status" => "required",
+            "body" => "required",
+        ]);
+        $undoRepeaterFake();
+
 });
