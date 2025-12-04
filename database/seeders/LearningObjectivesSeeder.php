@@ -10,6 +10,7 @@ class LearningObjectivesSeeder extends Seeder
     /**
      * Run the database seeds.
      * Populates the learning_objectives table with initial data.
+     * ATTENTION Lié au Seeder de matières actuel
      */
     public function run()
     {

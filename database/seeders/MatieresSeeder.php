@@ -10,6 +10,7 @@ class MatieresSeeder extends Seeder
     /**
      * Run the database seeds.
      * Populates the matiere table with initial data.
+     * ATTENTION Lié au seeder de LO actuel
      */
     public function run()
     {
