@@ -7,7 +7,7 @@ use App\Filament\Resources\Questions\Pages\EditQuestion;
 use App\Filament\Resources\Questions\Pages\ListQuestions;
 use App\Models\User;
 use Database\Seeders\ChaptersSeeder;
-use Database\Seeders\ChaptersSeederComplete;
+use Database\Seeders\LearningObjectivesSeeder;
 use Filament\Forms\Components\Repeater;
 
 use function Pest\Laravel\actingAs;
@@ -18,6 +18,7 @@ uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 beforeEach(function () {
     $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
     actingAs($user);
+    
 });
 
 test('can load the question create form', function () {
@@ -27,10 +28,8 @@ test('can load the question create form', function () {
 });
 
 test('form has errors', function () {
-    // $this->seed(ChaptersSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
-            // 'title' => fake()->sentence(),
             'chapter' => "50",
         ])
         ->call("create")
@@ -38,11 +37,18 @@ test('form has errors', function () {
 });
 
 test('form can create question', function() {
+    //ATTENTION will break when the custom exception about LO-chapter matching in Question Model will be implemented
+    for ($i = 0; $i <= 4; $i++) $LOArray[$i] = fake()->numberBetween(0,4000);
+
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersSeeder::class);
+    $this->seed([
+        ChaptersSeeder::class,
+        LearningObjectivesSeeder::class,
+    ]);
     livewire(CreateQuestion::class)
         ->fillForm([
             'chapter_id' => fake()->numberBetween(0,100),
+            'learning_objectives' => $LOArray,
             'type' => 0,
             'status' => 0, 
             'body' => fake()->sentence(),
