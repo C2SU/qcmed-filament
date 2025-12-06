@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
             $table->integer('type')->defautl(0); // 0 QCM | 1 QROC | 2 QZONE
             $table->integer('proposed_count')->nullable(); // montrer à l'étudiant ou pas le nombre de réponses vraies
-            $table->boolean('stand_alone')->default('1'); // 1 QI | 0 Dossier
             $table->longText('body');
             $table->text('correction')->nullable();
             $table->text('expected_answer')->nullable();
