@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Chapter;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,23 @@ class QuestionFactory extends Factory
      */
     public function definition(): array
     {
+        for ($i = 0; $i<5; $i++) $expected_answer_array[$i] =
+                [
+                    "proposition" => fake()->sentence(),
+                    "correction" => fake()->sentence(),
+                    "vrai" =>1
+                ];
+                
+        $expected_answer_json = json_encode($expected_answer_array);
+            
         return [
-            //
-        ];
+            "user_id" => User::exists()? User::whereRaw('RAND() < 0.01')->first(): Chapter::factory() ,
+            "chapter_id" => Chapter::exists() ? Chapter::whereRaw('RAND() < 0.01')->first(): Chapter::factory() ,
+            "type" => 0,
+            "proposed_count" => fake()->boolean(),
+            "body" => fake()->paragraph(),
+            "expected_answer" => $expected_answer_json,
+            "status" => 0,
+            ];
     }
 }
