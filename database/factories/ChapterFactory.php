@@ -27,8 +27,8 @@ class ChapterFactory extends Factory
     public function configure() 
     {
         return $this -> afterCreating(function($chapter) {
-            $matiere= Matiere::exists() ? Matiere::whereRaw('RAND() < 0.01')->first(): Matiere::factory();
-            $matiere -> chapter() ->save($chapter);
+            $matiere= Matiere::exists() ? Matiere::inRandomOrder()->first(): Matiere::factory();
+            $matiere -> chapters() ->save($chapter);
         });
     }
 }

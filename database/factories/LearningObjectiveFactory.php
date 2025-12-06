@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Chapter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class LearningObjectiveFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'chapter_numero' => Chapter::exists()? Chapter::inRandomOrder()->first(): Chapter::factory(),
+            'rang' => fake()->randomElement(["A","B"]),
+            'rubrique' => fake()->randomElement(["Définition", "Prise en charge", "Epidémiologie", "Physiopathologie", "Diagnostic positif"]),
+            'intitule' => $this->faker->sentence(),
         ];
     }
 }

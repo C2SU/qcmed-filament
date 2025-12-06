@@ -28,8 +28,8 @@ class QuestionFactory extends Factory
         $expected_answer_json = json_encode($expected_answer_array);
             
         return [
-            "user_id" => User::exists()? User::whereRaw('RAND() < 0.01')->first(): Chapter::factory() ,
-            "chapter_id" => Chapter::exists() ? Chapter::whereRaw('RAND() < 0.01')->first(): Chapter::factory() ,
+            "user_id" => User::exists()? User::inRandomOrder()->first(): User::factory() ,
+            "chapter_id" => Chapter::exists() ? Chapter::inRandomOrder()->first(): Chapter::factory() ,
             "type" => 0,
             "proposed_count" => fake()->boolean(),
             "body" => fake()->paragraph(),
