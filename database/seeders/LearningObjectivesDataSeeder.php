@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class LearningObjectivesSeeder extends Seeder
+class LearningObjectivesDataSeeder extends Seeder
 {
     /**
      * Run the database seeds.
