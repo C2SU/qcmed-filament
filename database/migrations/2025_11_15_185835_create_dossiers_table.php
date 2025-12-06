@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('description')->nullable();
+            $table->longText('body');
             $table->timestamps();
             $table->softDeletes();
         });
