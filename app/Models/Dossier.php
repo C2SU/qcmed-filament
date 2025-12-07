@@ -15,7 +15,7 @@ class Dossier extends Model
 
     protected $fillable = [
         "title",
-        "description",
+        "body",
     ];
 
     public function questions(): HasMany

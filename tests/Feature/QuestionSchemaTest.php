@@ -3,11 +3,9 @@
 // use App\Filament\Resources\Questions\Pages\CreateQuestion;
 
 use App\Filament\Resources\Questions\Pages\CreateQuestion;
-use App\Filament\Resources\Questions\Pages\EditQuestion;
-use App\Filament\Resources\Questions\Pages\ListQuestions;
 use App\Models\User;
-use Database\Seeders\ChaptersSeeder;
-use Database\Seeders\LearningObjectivesSeeder;
+use Database\Seeders\ChaptersDataSeeder;
+use Database\Seeders\LearningObjectivesDataSeeder;
 use Filament\Forms\Components\Repeater;
 
 use function Pest\Laravel\actingAs;
@@ -42,8 +40,8 @@ test('form can create question', function() {
 
     $undoRepeaterFake = Repeater::fake();
     $this->seed([
-        ChaptersSeeder::class,
-        LearningObjectivesSeeder::class,
+        ChaptersDataSeeder::class,
+        LearningObjectivesDataSeeder::class,
     ]);
     livewire(CreateQuestion::class)
         ->fillForm([
@@ -99,7 +97,7 @@ test('form has 20 max items error', function() {
     }
 
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersSeeder::class);
+    $this->seed(ChaptersDataSeeder::class);
 
     livewire(CreateQuestion::class)
         ->fillForm([
@@ -118,7 +116,7 @@ test('form has 20 max items error', function() {
 
 test('at least 4 propositions required', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersSeeder::class);
+    $this->seed(ChaptersDataSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
             'chapter_id' => fake()->numberBetween(0,100),
@@ -151,7 +149,7 @@ test('at least 4 propositions required', function() {
 
 test('at least one true answer required', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersSeeder::class);
+    $this->seed(ChaptersDataSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
             'chapter_id' => fake()->numberBetween(0,100),
@@ -194,7 +192,7 @@ test('at least one true answer required', function() {
 
 test('form has required errors', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersSeeder::class);
+    $this->seed(ChaptersDataSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
             'type' => NULL,

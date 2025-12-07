@@ -38,7 +38,7 @@ class DossierForm
                     ->required()
                     ->columnSpan(2),
 
-                MarkdownEditor::make("description")
+                MarkdownEditor::make("body")
                     ->columnSpanFull()
                     ->toolbarButtons([
                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
