@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('learning_objective_question', function (Blueprint $table) {
             $table->id();
-            $table->integer("question_id")->constrained("questions")->cascadeOnDelete();
-            $table->integer("learning_objective_id")->constrained("learning_objectives")->cascadeOnDelete();
+            $table->integer('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->integer('learning_objective_id')->constrained('learning_objectives')->cascadeOnDelete();
             $table->timestamps();
         });
     }

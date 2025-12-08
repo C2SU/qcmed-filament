@@ -15,7 +15,7 @@ uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 beforeEach(function () {
     $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
     actingAs($user);
-    
+
 });
 
 test('can load the dossier create form', function () {
@@ -27,26 +27,26 @@ test('can load the dossier create form', function () {
 test('dossier form has errors', function () {
     livewire(CreateDossier::class)
         ->fillForm([
-            'chapter' => "50",
+            'chapter' => '50',
         ])
-        ->call("create")
+        ->call('create')
         ->assertHasFormErrors();
 });
 
-
-
-
-test('form can create dossier', function() {
+test('form can create dossier', function () {
 
     $this->seed([
         ChaptersSeeder::class,
         LearningObjectivesSeeder::class,
     ]);
 
-    for ($i = 0; $i <= 4; $i++) $LOArray[$i] = fake()->numberBetween(0,4000);  
-    //ATTENTION will break when the custom exception about LO-chapter matching in Question Model will be implemented
+    for ($i = 0; $i <= 4; $i++) {
+        $LOArray[$i] = fake()->numberBetween(0, 4000);
+    }
+    // ATTENTION will break when the custom exception about LO-chapter matching in Question Model will be implemented
 
-    for ($i = 0; $i <=4; $i++) $questionFormArray [$i]= [
+    for ($i = 0; $i <= 4; $i++) {
+        $questionFormArray[$i] = [
             'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'learning_objectives' => $LOArray,
             'type' => 0,
@@ -54,44 +54,45 @@ test('form can create dossier', function() {
             'proposed_count' => 1,
             'expected_answer' => [
                 [
-                    "proposition" => fake()->sentence(),
-                    "correction" => fake()->sentence(),
-                    "vrai" =>1
-                ],
-                [ 
-                    "proposition" => fake()->sentence(),
-                    "correction" => fake()->sentence(),
-                    "vrai" =>1
+                    'proposition' => fake()->sentence(),
+                    'correction' => fake()->sentence(),
+                    'vrai' => 1,
                 ],
                 [
-                    "proposition" => fake()->sentence(),
-                    "correction" => fake()->sentence(),
-                    "vrai" =>1
+                    'proposition' => fake()->sentence(),
+                    'correction' => fake()->sentence(),
+                    'vrai' => 1,
                 ],
                 [
-                    "proposition" => fake()->sentence(),
-                    "correction" => fake()->sentence(),
-                    "vrai" =>1
+                    'proposition' => fake()->sentence(),
+                    'correction' => fake()->sentence(),
+                    'vrai' => 1,
                 ],
                 [
-                    "proposition" => fake()->sentence(),
-                    "correction" => fake()->sentence(),
-                    "vrai" =>1
+                    'proposition' => fake()->sentence(),
+                    'correction' => fake()->sentence(),
+                    'vrai' => 1,
                 ],
-            ]
+                [
+                    'proposition' => fake()->sentence(),
+                    'correction' => fake()->sentence(),
+                    'vrai' => 1,
+                ],
+            ],
         ];
+    }
 
     $undoRepeaterFake = Repeater::fake();
-    
+
     livewire(CreateDossier::class)
-    
+
         ->fillForm([
             'title' => fake()->sentence(),
-            'status' => 0, 
+            'status' => 0,
             'body' => fake()->sentence(),
-            'questions' => $questionFormArray, 
+            'questions' => $questionFormArray,
         ])
-        ->call("create")
+        ->call('create')
         ->assertHasNoFormErrors();
-        $undoRepeaterFake();
+    $undoRepeaterFake();
 });

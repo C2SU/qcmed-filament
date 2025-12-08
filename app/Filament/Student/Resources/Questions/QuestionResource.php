@@ -3,8 +3,6 @@
 namespace App\Filament\Student\Resources\Questions;
 
 use App\Filament\Student\Resources\Questions\Pages\AnswerQuestion;
-use App\Filament\Student\Resources\Questions\Pages\CreateQuestion;
-use App\Filament\Student\Resources\Questions\Pages\EditQuestion;
 use App\Filament\Student\Resources\Questions\Pages\ListQuestions;
 use App\Filament\Student\Resources\Questions\Pages\ViewQuestion;
 use App\Filament\Student\Resources\Questions\Schemas\QuestionForm;
@@ -38,19 +36,19 @@ class QuestionResource extends Resource
                 \Filament\Schemas\Components\Section::make('Informations')
                     ->schema([
                         \Filament\Schemas\Components\Text::make('info')
-                            ->content(fn ($record) => "Item: " . ($record->chapter?->numero ?? '-') . " | Type: " . match(strval($record->type)) {
+                            ->content(fn ($record) => 'Item: '.($record->chapter?->numero ?? '-').' | Type: '.match (strval($record->type)) {
                                 '0' => 'QCM/QRU/QRP',
                                 '1' => 'QROC',
                                 '2' => 'QZONE',
                                 default => 'Inconnu'
                             }),
                     ]),
-                
+
                 \Filament\Schemas\Components\Section::make('Énoncé')
                     ->schema([
                         \Filament\Schemas\Components\Html::make(fn ($record) => $record->body),
                     ]),
-                
+
                 \Filament\Schemas\Components\Section::make('Correction')
                     ->schema([
                         \Filament\Schemas\Components\View::make('filament.forms.components.question-correction')
@@ -59,7 +57,7 @@ class QuestionResource extends Resource
                                 'user_answer' => \App\Models\Attempt::where('question_id', $record->id)
                                     ->where('user_id', auth()->id())
                                     ->latest()
-                                    ->first()?->answers ?? []
+                                    ->first()?->answers ?? [],
                             ]),
                     ])
                     ->visible(fn ($record) => strval($record->type) === '0'),

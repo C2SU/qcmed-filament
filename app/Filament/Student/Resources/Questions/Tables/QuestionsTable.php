@@ -17,23 +17,23 @@ class QuestionsTable
                     ->searchable()
                     ->formatStateUsing(fn ($state) => "Item {$state}")
                     ->weight('bold'),
-                
+
                 TextColumn::make('title')
                     ->label('Question')
                     ->searchable()
                     ->grow()
                     ->wrap(),
-                
+
                 TextColumn::make('type')
                     ->label('Type')
                     ->badge()
-                    ->formatStateUsing(fn ($state) => match(strval($state)) {
+                    ->formatStateUsing(fn ($state) => match (strval($state)) {
                         '0' => 'QCM/QRU/QRP',
                         '1' => 'QROC',
                         '2' => 'QZONE',
                         default => 'Inconnu'
                     })
-                    ->color(fn ($state) => match(strval($state)) {
+                    ->color(fn ($state) => match (strval($state)) {
                         '0' => 'success',
                         '1' => 'info',
                         '2' => 'warning',

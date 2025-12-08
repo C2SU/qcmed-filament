@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class Dossier extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
-        "title",
-        "body",
+        'title',
+        'body',
     ];
 
     public function questions(): HasMany
@@ -25,7 +25,7 @@ class Dossier extends Model
 
     public function delete()
     {
-        DB::transaction(function() {
+        DB::transaction(function () {
             $this->questions()->delete();
             parent::delete();
         });
@@ -33,7 +33,7 @@ class Dossier extends Model
 
     public function forceDelete()
     {
-        DB::transaction(function() {
+        DB::transaction(function () {
             $this->questions()->forceDelete();
             parent::delete(); // Finally, delete the dossier
         });

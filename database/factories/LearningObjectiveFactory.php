@@ -18,9 +18,9 @@ class LearningObjectiveFactory extends Factory
     public function definition(): array
     {
         return [
-            'chapter_numero' => Chapter::exists()? Chapter::inRandomOrder()->first()->numero: Chapter::factory(),
-            'rang' => fake()->randomElement(["A","B"]),
-            'rubrique' => fake()->randomElement(["Définition", "Prise en charge", "Epidémiologie", "Physiopathologie", "Diagnostic positif"]),
+            'chapter_numero' => Chapter::exists() ? Chapter::inRandomOrder()->first()->numero : Chapter::factory(),
+            'rang' => fake()->randomElement(['A', 'B']),
+            'rubrique' => fake()->randomElement(['Définition', 'Prise en charge', 'Epidémiologie', 'Physiopathologie', 'Diagnostic positif']),
             'intitule' => $this->faker->sentence(),
         ];
     }

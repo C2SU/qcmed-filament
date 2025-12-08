@@ -18,7 +18,7 @@ class QuestionsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(function (Builder $query){
+            ->modifyQueryUsing(function (Builder $query) {
                 return $query->questionIsolee();
             })
             ->columns([
@@ -43,13 +43,13 @@ class QuestionsTable
                 TextColumn::make('type')
                     ->label('Type')
                     ->badge()
-                    ->formatStateUsing(fn ($state) => match(strval($state)) {
+                    ->formatStateUsing(fn ($state) => match (strval($state)) {
                         '0' => 'QCM/QRU/QRP',
                         '1' => 'QROC',
                         '2' => 'QZONE',
                         default => 'Inconnu'
                     })
-                    ->color(fn ($state) => match(strval($state)) {
+                    ->color(fn ($state) => match (strval($state)) {
                         '0' => 'success',
                         '1' => 'info',
                         '2' => 'warning',
@@ -65,13 +65,13 @@ class QuestionsTable
                 TextColumn::make('status')
                     ->label('Statut')
                     ->badge()
-                    ->formatStateUsing(fn ($state) => match(strval($state)) {
+                    ->formatStateUsing(fn ($state) => match (strval($state)) {
                         '0' => 'Brouillon',
                         '1' => 'En révision',
                         '2' => 'Finalisée',
                         default => 'Inconnu'
                     })
-                    ->color(fn ($state) => match(strval($state)) {
+                    ->color(fn ($state) => match (strval($state)) {
                         '0' => 'gray',
                         '1' => 'warning',
                         '2' => 'success',

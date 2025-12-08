@@ -16,8 +16,11 @@ class User extends Authenticatable implements FilamentUser
 
     // Role constants A RECHECKER PLUS TARD ALED
     public const ROLE_SUPERADMIN = 1;
+
     public const ROLE_ADMIN = 2;
+
     public const ROLE_REDACELEC = 3;
+
     public const ROLE_STUDENT = 4;
 
     /**
@@ -61,7 +64,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return match($panel->getId()) {
+        return match ($panel->getId()) {
             'admin' => in_array($this->role, [self::ROLE_SUPERADMIN, self::ROLE_ADMIN, self::ROLE_REDACELEC]),
             'student' => $this->role === self::ROLE_STUDENT,
             default => false,

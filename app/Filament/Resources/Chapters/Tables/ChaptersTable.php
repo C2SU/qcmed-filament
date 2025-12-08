@@ -22,32 +22,32 @@ class ChaptersTable
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
-                
+
                 TextColumn::make('description')
                     ->label('Description')
                     ->searchable()
                     ->limit(100)
                     ->wrap()
                     ->grow(),
-                
+
                 TextColumn::make('learningObjectives_count')
                     ->label('Objectifs')
                     ->counts('learningObjectives')
                     ->sortable()
                     ->alignCenter(),
-                
+
                 TextColumn::make('questions_count')
                     ->label('Questions')
                     ->counts('questions')
                     ->sortable()
                     ->alignCenter(),
-                
+
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 TextColumn::make('updated_at')
                     ->label('Modifié le')
                     ->dateTime('d/m/Y H:i')

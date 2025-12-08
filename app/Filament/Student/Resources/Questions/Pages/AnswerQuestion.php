@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Auth;
 class AnswerQuestion extends Page implements HasForms
 {
     use InteractsWithForms;
-    
+
     protected static string $resource = QuestionResource::class;
 
     protected string $view = 'filament.student.pages.answer-question';
 
     public ?array $data = [];
-    
+
     public $record;
 
-    public function mount(int | string $record): void
+    public function mount(int|string $record): void
     {
         $this->record = static::getResource()::resolveRecordRouteBinding($record);
         $this->form->fill();
@@ -34,11 +34,11 @@ class AnswerQuestion extends Page implements HasForms
     public function form(Schema $schema): Schema
     {
         $record = $this->record;
-        
+
         return $schema
             ->components([
                 Section::make('Question')
-                    ->description("Item {$record->chapter?->numero} - " . match(strval($record->type)) {
+                    ->description("Item {$record->chapter?->numero} - ".match (strval($record->type)) {
                         '0' => 'QCM/QRU/QRP',
                         '1' => 'QROC',
                         '2' => 'QZONE',
@@ -49,7 +49,7 @@ class AnswerQuestion extends Page implements HasForms
                     ])
                     ->collapsible()
                     ->persistCollapsed(),
-                
+
                 Section::make('Vos réponses')
                     ->description('Cochez les propositions que vous considérez vraies')
                     ->schema([
@@ -63,6 +63,7 @@ class AnswerQuestion extends Page implements HasForms
                                             $letter = chr(65 + $index);
                                             $options[$index] = "{$letter}. {$answer['proposition']}";
                                         }
+
                                         return $options;
                                     })
                                     ->required()
@@ -82,7 +83,7 @@ class AnswerQuestion extends Page implements HasForms
                 ->label('Valider mes réponses')
                 ->action('submitAnswer')
                 ->color('primary'),
-            
+
             Action::make('cancel')
                 ->label('Retour')
                 ->url(QuestionResource::getUrl('index'))
@@ -94,7 +95,7 @@ class AnswerQuestion extends Page implements HasForms
     {
         $data = $this->form->getState();
         $selectedAnswers = $data['selected_answers'] ?? [];
-        
+
         // Calculer le score
         $correctAnswers = [];
         foreach ($this->record->expected_answer as $index => $answer) {
@@ -102,12 +103,12 @@ class AnswerQuestion extends Page implements HasForms
                 $correctAnswers[] = $index;
             }
         }
-        
-        $isCorrect = empty(array_diff($correctAnswers, $selectedAnswers)) && 
+
+        $isCorrect = empty(array_diff($correctAnswers, $selectedAnswers)) &&
                      empty(array_diff($selectedAnswers, $correctAnswers));
-        
+
         $score = $isCorrect ? 100 : 0;
-        
+
         // Enregistrer la tentative
         Attempt::create([
             'question_id' => $this->record->id,
@@ -116,7 +117,7 @@ class AnswerQuestion extends Page implements HasForms
             'score' => $score,
             'is_correct' => $isCorrect,
         ]);
-        
+
         // Notification
         if ($isCorrect) {
             Notification::make()
@@ -131,7 +132,7 @@ class AnswerQuestion extends Page implements HasForms
                 ->warning()
                 ->send();
         }
-        
+
         // Rediriger vers la page de correction
         $this->redirect(QuestionResource::getUrl('view', ['record' => $this->record]));
     }

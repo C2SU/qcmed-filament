@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class CreateAdminUser extends Command
 {
     protected $signature = 'make:admin-user';
+
     protected $description = 'Create an admin user';
 
     public function handle()
@@ -19,6 +20,7 @@ class CreateAdminUser extends Command
 
         if (User::where('email', $email)->exists()) {
             $this->error('A user with this email already exists!');
+
             return 1;
         }
 
@@ -31,7 +33,7 @@ class CreateAdminUser extends Command
 
         $this->info('Admin user created successfully!');
         $this->info("Email: {$email}");
-        
+
         return 0;
     }
 }

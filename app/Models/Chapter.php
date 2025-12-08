@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chapter extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'numero',
@@ -22,7 +22,7 @@ class Chapter extends Model
      */
     public function getNameAttribute(): string
     {
-        return "Item {$this->numero} - " . \Illuminate\Support\Str::limit($this->description, 80);
+        return "Item {$this->numero} - ".\Illuminate\Support\Str::limit($this->description, 80);
     }
 
     /**

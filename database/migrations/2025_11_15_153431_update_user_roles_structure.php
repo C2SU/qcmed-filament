@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
@@ -16,10 +14,10 @@ return new class extends Migration
         // Update existing roles
         // Old role 3 (admin) -> New role 2 (admin)
         DB::table('users')->where('role', 3)->update(['role' => 2]);
-        
+
         // Old role 2 (student) -> New role 4 (student)
         DB::table('users')->where('role', 2)->update(['role' => 4]);
-        
+
         // Old role 1 (user) -> New role 4 (student) - converting users to students
         DB::table('users')->where('role', 1)->update(['role' => 4]);
     }

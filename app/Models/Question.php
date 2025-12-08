@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Question extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     public const TYPE_QCM = 0;
+
     public const TYPE_QROC = 1;
-    public const TYPE_QZONE =2;
+
+    public const TYPE_QZONE = 2;
 
     public const STATUS_DRAFT = 0;
+
     public const STATUS_TO_BE_REVIEWED = 1;
+
     public const STATUS_FINALIZED = 2;
 
     protected $fillable = [
@@ -32,7 +35,7 @@ class Question extends Model
         'body',
         'image',
         'correction',
-        'expected_answer', //Items réponse attendus
+        'expected_answer', // Items réponse attendus
         'click_zone', // Zone cliquable pour les questions de type "clickable"
         'status',
         'finalized_at',
@@ -49,12 +52,12 @@ class Question extends Model
      */
     public function getTitleAttribute(): string
     {
-        if (!$this->exists) {
+        if (! $this->exists) {
             return 'Nouvelle question';
         }
 
         $body = strip_tags($this->body ?? '');
-        $excerpt = !empty($body) ? \Illuminate\Support\Str::limit($body, 60) : 'Sans énoncé';
+        $excerpt = ! empty($body) ? \Illuminate\Support\Str::limit($body, 60) : 'Sans énoncé';
 
         return "Question #{$this->id} - {$excerpt}";
     }
@@ -106,11 +109,11 @@ class Question extends Model
 
     public function scopeQuestionIsolee(Builder $query)
     {
-        return $query->where('dossier_id', '=', NULL);
+        return $query->where('dossier_id', '=', null);
     }
 
     public function scopeQuestionDossier(Builder $query)
     {
-        return $query->whereNot('dossier_id', '=', NULL);
+        return $query->whereNot('dossier_id', '=', null);
     }
 }

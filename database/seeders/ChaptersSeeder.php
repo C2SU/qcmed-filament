@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Chapter;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ChaptersSeeder extends Seeder

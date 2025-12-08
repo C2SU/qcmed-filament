@@ -16,125 +16,125 @@ class MatieresDataSeeder extends Seeder
     {
         DB::table('matieres')->insert([
             [
-                'name' => 'Anatomie et Cytologie Pathologiques'
+                'name' => 'Anatomie et Cytologie Pathologiques',
             ],
             [
-                'name' => 'Anesthésie - Réanimation'
+                'name' => 'Anesthésie - Réanimation',
             ],
             [
-                'name' => 'Cancérologie'
+                'name' => 'Cancérologie',
             ],
             [
-                'name' => 'Chirurgie Digestive'
+                'name' => 'Chirurgie Digestive',
             ],
             [
-                'name' => 'CMF'
+                'name' => 'CMF',
             ],
             [
-                'name' => 'Dermatologie'
+                'name' => 'Dermatologie',
             ],
             [
-                'name' => 'Douleurs - Soins Palliatifs'
+                'name' => 'Douleurs - Soins Palliatifs',
             ],
             [
-                'name' => 'Endocrinologie'
+                'name' => 'Endocrinologie',
             ],
             [
-                'name' => 'Génétique'
+                'name' => 'Génétique',
             ],
             [
-                'name' => 'Gériatrie'
+                'name' => 'Gériatrie',
             ],
             [
-                'name' => 'Gynécologie Médicale'
+                'name' => 'Gynécologie Médicale',
             ],
             [
-                'name' => 'Gynécologie - Obstétrique'
+                'name' => 'Gynécologie - Obstétrique',
             ],
             [
-                'name' => 'Hématologie'
+                'name' => 'Hématologie',
             ],
             [
-                'name' => 'HGE'
+                'name' => 'HGE',
             ],
             [
-                'name' => 'Imagerie Médicale'
+                'name' => 'Imagerie Médicale',
             ],
             [
-                'name' => 'Immunopathologie'
+                'name' => 'Immunopathologie',
             ],
             [
-                'name' => 'Infectiologie'
+                'name' => 'Infectiologie',
             ],
             [
-                'name' => 'Médecine Cardiovasculaire'
+                'name' => 'Médecine Cardiovasculaire',
             ],
             [
-                'name' => 'Médecine Générale'
+                'name' => 'Médecine Générale',
             ],
             [
-                'name' => 'MIR - Urgences'
+                'name' => 'MIR - Urgences',
             ],
             [
-                'name' => 'Médecine Interne'
+                'name' => 'Médecine Interne',
             ],
             [
-                'name' => 'Médecine Légale - Médecine du Travail'
+                'name' => 'Médecine Légale - Médecine du Travail',
             ],
             [
-                'name' => 'Médecine Moléculaire'
+                'name' => 'Médecine Moléculaire',
             ],
             [
-                'name' => 'MPR'
+                'name' => 'MPR',
             ],
             [
-                'name' => 'Médecine Vasculaire'
+                'name' => 'Médecine Vasculaire',
             ],
             [
-                'name' => 'Néphrologie'
+                'name' => 'Néphrologie',
             ],
             [
-                'name' => 'Neurochirurgie'
+                'name' => 'Neurochirurgie',
             ],
             [
-                'name' => 'Neurologie'
+                'name' => 'Neurologie',
             ],
             [
-                'name' => 'Nutrition'
+                'name' => 'Nutrition',
             ],
             [
-                'name' => 'Ophtalmologie'
+                'name' => 'Ophtalmologie',
             ],
             [
-                'name' => 'ORL'
+                'name' => 'ORL',
             ],
             [
-                'name' => 'Orthopédie - Traumatologie'
+                'name' => 'Orthopédie - Traumatologie',
             ],
             [
-                'name' => 'Parasitologie'
+                'name' => 'Parasitologie',
             ],
             [
-                'name' => 'Pédiatrie'
+                'name' => 'Pédiatrie',
             ],
             [
-                'name' => 'Pneumologie'
+                'name' => 'Pneumologie',
             ],
             [
-                'name' => 'Psychiatrie - Addictologie'
+                'name' => 'Psychiatrie - Addictologie',
             ],
             [
-                'name' => 'Rhumatologie'
+                'name' => 'Rhumatologie',
             ],
             [
-                'name' => 'Santé Publique'
+                'name' => 'Santé Publique',
             ],
             [
-                'name' => 'Thérapeutique'
+                'name' => 'Thérapeutique',
             ],
             [
-                'name' => 'Urologie'
-            ]
+                'name' => 'Urologie',
+            ],
         ]);
     }
 }

@@ -19,16 +19,16 @@ class ChapterFactory extends Factory
     {
         // $matiere = Matiere::factory()-> create();
         return [
-            'numero' => $this->faker->unique()->numberBetween(1000,1500),
+            'numero' => $this->faker->unique()->numberBetween(1000, 1500),
             'description' => $this->faker->sentence(),
         ];
     }
 
-    public function configure() 
+    public function configure()
     {
-        return $this -> afterCreating(function() {
-            $matiere= Matiere::exists() ? Matiere::inRandomOrder()->first(): Matiere::factory()->create();
-            $matiere -> chapters() ->saveMany($this);
+        return $this->afterCreating(function () {
+            $matiere = Matiere::exists() ? Matiere::inRandomOrder()->first() : Matiere::factory()->create();
+            $matiere->chapters()->saveMany($this);
         });
     }
 }

@@ -1,15 +1,17 @@
 <?php
+
 // tests/Feature/SecurityPanelTest.php
 
 namespace Tests\Feature;
 
 use App\Models\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SecurityPanelTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test_admin_panel_forbidden_for_student()
     {
         $student = User::factory()->create(['role' => User::ROLE_STUDENT]);

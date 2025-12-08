@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Question;
 use App\Models\User;
-use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,18 +19,18 @@ class DossierFactory extends Factory
     public function definition(): array
     {
         return [
-            "title" => fake()->sentence(),
-            "body" => fake() -> paragraph(),
-            "status" => 0,
-            "author_id" => User::factory(),
+            'title' => fake()->sentence(),
+            'body' => fake()->paragraph(),
+            'status' => 0,
+            'author_id' => User::factory(),
         ];
     }
 
     public function configure()
     {
-        return $this -> afterCreating(function($dossier) {
-            $questions=Question::factory()->count(5)->create();
-            $dossier -> questions() ->saveMany($questions);
+        return $this->afterCreating(function ($dossier) {
+            $questions = Question::factory()->count(5)->create();
+            $dossier->questions()->saveMany($questions);
         });
     }
 }
