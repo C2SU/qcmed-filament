@@ -24,13 +24,19 @@ Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'info
 [Il n'y en a pas vraiment! Il est recommandé d'avoir un peu d'expérience en informatique, de préférence en **php** et avec le framework **Laravel**, mais dans l'équipe on apprend beaucoup sur le tas.]
 
 ## Installation
+### Cloner le dépôt distant 
+
+[]
+```powershell
+git clone https://github.com/C2SU/qcmed-filament.git
+```
 
 ### Après avoir téléchargé le dépôt git (pour Linux et WSL pour les utilisateurs sous windows)
 
-1. Copier l'environnement :
+1. Copier le fichier environnement à partir du fichier de base:
 
 ```powershell
-cp.env.example .env
+cp .env.example .env
 ```
 
 2. Installer les dépendances PHP :
@@ -39,7 +45,7 @@ cp.env.example .env
 composer install
 ```
 
-3. (Optionnel) Installer les dépendances JS et compiler :
+3. Installer les dépendances JS et compiler :
 
 ```powershell
 npm install
@@ -52,7 +58,7 @@ npm run dev
 php artisan key:generate
 ```
 
-5. Configurer la base de données dans `.env` (par exemple pour sqlite):
+5. Configurer la base de données dans `.env` (par exemple pour sqlite pour la base de données):
 
 ```
 DB_CONNECTION=sqlite
