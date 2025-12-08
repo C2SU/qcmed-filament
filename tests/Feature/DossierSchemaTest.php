@@ -1,9 +1,10 @@
 <?php
 
 use App\Filament\Resources\Dossiers\Pages\CreateDossier;
+use App\Models\Chapter;
 use App\Models\User;
-use Database\Seeders\ChaptersDataSeeder;
-use Database\Seeders\LearningObjectivesDataSeeder;
+use Database\Seeders\ChaptersSeeder;
+use Database\Seeders\LearningObjectivesSeeder;
 use Filament\Forms\Components\Repeater;
 
 use function Pest\Laravel\actingAs;
@@ -37,11 +38,16 @@ test('dossier form has errors', function () {
 
 test('form can create dossier', function() {
 
+    $this->seed([
+        ChaptersSeeder::class,
+        LearningObjectivesSeeder::class,
+    ]);
+
     for ($i = 0; $i <= 4; $i++) $LOArray[$i] = fake()->numberBetween(0,4000);  
     //ATTENTION will break when the custom exception about LO-chapter matching in Question Model will be implemented
 
     for ($i = 0; $i <=4; $i++) $questionFormArray [$i]= [
-            'chapter_id' => fake()->numberBetween(1,100),
+            'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'learning_objectives' => $LOArray,
             'type' => 0,
             'body' => fake()->sentence(),
@@ -76,11 +82,6 @@ test('form can create dossier', function() {
         ];
 
     $undoRepeaterFake = Repeater::fake();
-    
-    $this->seed([
-        ChaptersDataSeeder::class,
-        LearningObjectivesDataSeeder::class,
-    ]);
     
     livewire(CreateDossier::class)
     

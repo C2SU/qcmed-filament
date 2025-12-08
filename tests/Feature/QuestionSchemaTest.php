@@ -3,9 +3,10 @@
 // use App\Filament\Resources\Questions\Pages\CreateQuestion;
 
 use App\Filament\Resources\Questions\Pages\CreateQuestion;
+use App\Models\Chapter;
 use App\Models\User;
-use Database\Seeders\ChaptersDataSeeder;
-use Database\Seeders\LearningObjectivesDataSeeder;
+use Database\Seeders\ChaptersSeeder;
+use Database\Seeders\LearningObjectivesSeeder;
 use Filament\Forms\Components\Repeater;
 
 use function Pest\Laravel\actingAs;
@@ -40,12 +41,12 @@ test('form can create question', function() {
 
     $undoRepeaterFake = Repeater::fake();
     $this->seed([
-        ChaptersDataSeeder::class,
-        LearningObjectivesDataSeeder::class,
+        ChaptersSeeder::class,
+        LearningObjectivesSeeder::class,
     ]);
     livewire(CreateQuestion::class)
         ->fillForm([
-            'chapter_id' => fake()->numberBetween(0,100),
+            'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'learning_objectives' => $LOArray,
             'type' => 0,
             'status' => 0, 
@@ -97,11 +98,11 @@ test('form has 20 max items error', function() {
     }
 
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersDataSeeder::class);
+    $this->seed(ChaptersSeeder::class);
 
     livewire(CreateQuestion::class)
         ->fillForm([
-            'chapter_id' => fake()->numberBetween(0,100),
+            'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'type' => 0,
             'status' => 0, 
             'body' => fake()->sentence(),
@@ -116,10 +117,10 @@ test('form has 20 max items error', function() {
 
 test('at least 4 propositions required', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersDataSeeder::class);
+    $this->seed(ChaptersSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
-            'chapter_id' => fake()->numberBetween(0,100),
+            'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'type' => 0,
             'status' => 0, 
             'body' => fake()->sentence(),
@@ -149,10 +150,10 @@ test('at least 4 propositions required', function() {
 
 test('at least one true answer required', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersDataSeeder::class);
+    $this->seed(ChaptersSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
-            'chapter_id' => fake()->numberBetween(0,100),
+            'chapter_id' => Chapter::inRandomOrder()->first()->id,
             'type' => 0,
             'status' => 0, 
             'body' => fake()->sentence(),
@@ -192,7 +193,7 @@ test('at least one true answer required', function() {
 
 test('form has required errors', function() {
     $undoRepeaterFake = Repeater::fake();
-    $this->seed(ChaptersDataSeeder::class);
+    $this->seed(ChaptersSeeder::class);
     livewire(CreateQuestion::class)
         ->fillForm([
             'type' => NULL,
