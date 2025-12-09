@@ -155,10 +155,10 @@ En gros, git et github.
 
 #### Déploiement
 
-[
+
 [Jenkins]()
 [Kubernetes]()
-]
+
 
 ## Documentation
 
