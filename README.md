@@ -1,15 +1,16 @@
-# [QCMED]
+# QCMED
 
 ## À propos
 
-[QCMED est un projet de banque de QCMs par des étudiants en médecine, pour des étudiants en médecine!
+<p style = "text-align: justify">QCMED est un projet de banque de QCMs par des étudiants en médecine, pour des étudiants en médecine!
 Notre objectif est de créer une plateforme **gratuite** que les différents tutorats des années supérieurs pourront utiliser pour proposer des questions et des dossiers progressifs à leurs étudiants.
 Le projet est ambitieux et se veut conforme à toute la docimologie de l'EDN et compétitif avec les plateformes payantes déjà existantes.
-Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'informatique, auto-didacte et qui ont quelques années d'expérience en associatif.]
+Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'informatique, auto-didacte et qui ont quelques années d'expérience en associatif.</p>
 
 ## Table des matières
 
 - 🪧 [À propos](#à-propos)
+- 🌲 [Roadmap](#roadmap)
 - 📦 [Prérequis](#prérequis)
 - 🚀 [Installation](#installation)
 - 🛠️ [Utilisation](#utilisation)
@@ -19,14 +20,19 @@ Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'info
 - 🏷️ [Gestion des versions](#gestion-des-versions)
 - 📝 [Licence](#licence)
 
+## Roadmap
+![Roadmap du projet](./roadmap.png)
+
 ## Prérequis
 
-[Il n'y en a pas vraiment! Il est recommandé d'avoir un peu d'expérience en informatique, de préférence en **php** et avec le framework **Laravel**, mais dans l'équipe on apprend beaucoup sur le tas.]
+Il n'y en a pas vraiment! Il est recommandé d'avoir un peu d'expérience en informatique, de préférence en **[php]()** et avec le framework **[Laravel]()**, mais on peut tout à fait apprendre sur le tas.
+
+Pensez à bien avoir les dernières versions de php et de composer sur votre appareil!
+
 
 ## Installation
 ### Cloner le dépôt distant 
 
-[]
 ```powershell
 git clone https://github.com/C2SU/qcmed-filament.git
 ```
@@ -75,15 +81,17 @@ Le seeder crée des utilisateurs de test, des items et des questions exemples.
 
 ## Utilisation
 
-[Pour accéder au dashboard d'administrateur, vous pouvez créer un utilisateur avec ]
+Pour accéder au dashboard d'administrateur, vous pouvez créer un utilisateur avec 
 
 ```powershell
 php artisan make:filament-user
 ```
 
-[Remplissez le formulaire qui s'affiche sur le terminal, puis accédez à la DB pour changer le 'role' de votre nouvel utilisateur de '4' à '1' 
+Remplissez le formulaire qui s'affiche sur le terminal, puis accédez à la DB pour changer le 'role' de votre nouvel utilisateur de '4' à '1'
 
-Si vous utilisez SQLite pour votre environnement dev, vous pouvez utiliser l'extension 'database client' de VS code]
+Si vous utilisez SQLite pour votre environnement dev, vous pouvez utiliser l'extension 'database client' de VS code
+
+Vous pouvez également commencer directement avec l'utilisateur admin@example.com et le mot de passe password après avoir seed votre base de données
 
 ## Contribution
 
@@ -94,22 +102,63 @@ A décrire!]
 
 ### Langages & Frameworks
 
-[
+
 [PHP](https://www.php.net/docs.php)
 [Laravel](https://laravel.com/docs/installation)
 [Livewire](https://laravel-livewire.com/)
 [Tailwind](https://tailwindcss.com/)
-[Filament](https://filamentphp.com/docs)]
+[Filament](https://filamentphp.com/docs)
+
 
 ### Outils
 
+#### Code editor
+
+[VS Code]() 
+
+Quelques extensions VS code recommandés pour ce projet :
+
+[Database Client](https://open-vsx.org/vscode/item?itemName=cweijan.vscode-database-client2)
+
+[PHP Intelephense](https://open-vsx.org/vscode/item?itemName=bmewburn.vscode-intelephense-client)
+
+[Git Blame](https://open-vsx.org/vscode/item?itemName=waderyan.gitblame)
+[Git Lens](https://open-vsx.org/vscode/item?itemName=eamodio.gitlens)
+
+[Laravel](https://open-vsx.org/vscode/item?itemName=laravel.vscode-laravel)
+[Laravel Goto Components](https://open-vsx.org/vscode/item?itemName=MrChetan.goto-laravel-components)
+[Laravel Intellisense](https://open-vsx.org/vscode/item?itemName=mohamedbenhida.laravel-intellisense)
+[Laravel Snippets](https://open-vsx.org/vscode/item?itemName=onecentlin.laravel5-snippets)
+
+[Markdown Editor](https://open-vsx.org/vscode/item?itemName=zaaack.markdown-editor)
+
+#### Code review
+
+[phpinsights](https://github.com/nunomaduro/phpinsights) 
+[phpstan](https://phpstan.org/)
+[larastan](https://github.com/larastan/larastan)
+
+#### Style
+
+[laravelpint](https://laravel.com/docs/12.x/pint)
+
+
+#### DebugBar
+
+[Debugbar](https://github.com/barryvdh/laravel-debugbar)
+
+
 #### CI
 
-[En gros, git et github. Quelques extensions VS code recommandés sont ]
+En gros, git et github. 
+
 
 #### Déploiement
 
-[On utilisera Jenkins et Kubernetes le moment venu mais on n'y est pas encore]
+[
+[Jenkins]()
+[Kubernetes]()
+]
 
 ## Documentation
 
@@ -119,7 +168,7 @@ A décrire!]
 
 Afin de maintenir un cycle de publication claire et de favoriser la rétrocompatibilité, la dénomination des versions suit la spécification décrite par la [Gestion sémantique de version](https://semver.org/lang/fr/)
 
-Les versions disponibles ainsi que les journaux décrivant les changements apportés sont disponibles depuis [la page des Releases][https://github.com/C2SU/qcmed-filament/releases].
+Les versions disponibles ainsi que les journaux décrivant les changements apportés sont disponibles depuis [la page des Releases](https://github.com/C2SU/qcmed-filament/releases).
 
 ## Licence
 
