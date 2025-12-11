@@ -14,6 +14,7 @@ Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'info
 - 🪧 [À propos](#à-propos)
 - 🚀 [Installation](#installation)
 - 🛠️ [Utilisation](#utilisation)
+- ⛵ [Déploiement](#déploiement)
 - 🤝 [Contribution](#contribution)
 - 🏗️ [Construit avec](#construit-avec)
 - 📝 [Licence](#licence)
@@ -85,6 +86,8 @@ Si vous utilisez SQLite pour votre environnement dev, vous pouvez utiliser l'ext
 
 Vous pouvez également commencer directement avec l'utilisateur admin@example.com et le mot de passe password après avoir seed votre base de données. 
 
+## Déploiement
+
 Le tutoriel pour le déploiement arrivera dès qu'une version bêta-test sera disponible!
 
 ## Contribution
@@ -93,9 +96,9 @@ Pour contribuer au code vous pouvez nous contacter sur [Facebook](https://www.fa
 
 Vous pouvez consulter notre document pour les guidelines pour [contribuer](CONTRIBUTING.md)
 
-Vous pouvez consulter notre document pour les guidelines pour [contribuer](CONTRIBUTING.md)
-
 Pour régler un bug ou pour ajouter une fonctionnalité, il faut créer une branche à part puis faire un pull request.
+
+## Construit avec
 
 ![My Skills](https://go-skill-icons.vercel.app/api/icons?i=php,laravel,livewire,tailwind,filament&title=true&theme=dark)
 
