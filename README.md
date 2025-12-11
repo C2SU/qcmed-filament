@@ -95,9 +95,9 @@ Pour contribuer au code vous pouvez nous contacter sur [Facebook <i class="fab f
 
 Vous pouvez consulter notre document pour les guidelines pour [contribuer](CONTRIBUTING.md)
 
-## Construit avec
+Pour régler un bug ou pour ajouter une fonctionnalité, il faut créer une branche à part puis faire un pull request.
 
-### Langages & Frameworks
+Les commits devraient être courts et "atomiques" (avec un petit changement à la fois).
 
 ![My Skills](https://go-skill-icons.vercel.app/api/icons?i=php,laravel,livewire,tailwind,filament&title=true&theme=dark)
 
