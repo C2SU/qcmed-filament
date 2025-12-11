@@ -1,65 +1,66 @@
-# [QCMED]
-
-## À propos
-
-[QCMED est un projet de banque de QCMs par des étudiants en médecine, pour des étudiants en médecine!
-Notre objectif est de créer une plateforme **gratuite** que les différents tutorats des années supérieurs pourront utiliser pour proposer des questions et des dossiers progressifs à leurs étudiants.
-Le projet est ambitieux et se veut conforme à toute la docimologie de l'EDN et compétitif avec les plateformes payantes déjà existantes.]
+# Contribuer au projet
 
 ## Table des matières
 
-- 🪧 [À propos](#à-propos)
-- 📦 [Prérequis](#prérequis)
-- 🚀 [Installation](#installation)
-- 🛠️ [Utilisation](#utilisation)
-- 🤝 [Contribution](#contribution)
-- 🏗️ [Construit avec](#construit-avec)
-- 📚 [Documentation](#documentation)
+- 🌲 [Roadmap](#roadmap)
+- 🐤 [Prérequis](#prérequis)
+- 🚀 [Installation](README.md#installation)
+- 📦 [Base de Données](#Base-de-données)
+- 🐈‍⬛ [Git et Github](#installation)
 - 🏷️ [Gestion des versions](#gestion-des-versions)
-- 📝 [Licence](#licence)
+
+## Roadmap
+
+![Roadmap du projet](./roadmap.png)
 
 ## Prérequis
 
-[Liste de tous les éléments nécessaires pour le bon fonctionnement du projet avec description + lien vers la documentation]
+Il n'y en a pas vraiment! Il est recommandé d'avoir un peu d'expérience en informatique, de préférence en **[php](https://www.phptutorial.net/)** et avec le framework **[Laravel](https://www.w3schools.in/laravel)**, mais on peut tout à fait apprendre sur le tas!
 
 ## Installation
 
-[Étapes avec exemples des commandes à lancer pour installer le projet en local]
+Il faut suivre les règles d'installation sur [page d'accueuil du projet!](README.md#installation)
 
-## Utilisation
+## Base de données
 
-[### Sous-titre + description avec exemple des commandes à lancer pour l'ensemble des actions disponibles à l'utilisation dans un mode de développement]
+On suit les conventions de nommage de [cet article](https://medium.com/@aliakbarhosseinzadeh/best-practices-for-sql-naming-conventions-tables-columns-keys-and-more-1d5e13853e39) en ce qui concerne les noms de tables et 
+de colones dans la base de données
 
-## Contribution
+Le schéma de la base de données arrive très bientôt! 
 
-[### Sous-titre + description avec exemple des commandes à lancer pour l'ensemble du flux de contribution sur le dépôt]
+## git et github
 
-## Construit avec
+Pour régler un bug ou pour ajouter une fonctionnalité, il faut créer une branche à part puis faire un pull request.
 
-### Langages & Frameworks
+Les commits devraient être courts et "atomiques" (avec un petit changement à la fois).
 
-[Liste de tout ce qui permet la confection du projet avec description + lien vers la documentation]
+```powershell
+$ git commit -m "court résumé de ce qui a changé
+> 
+> Un paragraphe décrivant ce qui a changé dans le code et son impact"
+```
 
-### Outils
+[Quelques règles de bonnes pratiques pour les commits](https://gist.github.com/luismts/495d982e8c5b1a0ced4a57cf3d93cf60)
 
-#### CI
+[Court article explicatif de quelques flows de développements en branches](https://kevinsguides.com/guides/code/devops/file-mgmt/git-github-workflow-branch-merge/)
 
-[Liste de tout ce qui permet l'intégration automatisée du projet avec description + lien vers la documentation et mise en avant des comptes, organisations et variables]
+## Extensions VS code  recommandées 
 
-#### Déploiement
+[Database Client](https://open-vsx.org/vscode/item?itemName=cweijan.vscode-database-client2)
 
-[Liste de tout ce qui permet le déploiement du projet avec description + lien vers la documentation et mise en avant des comptes, organisations et variables]
+[PHP Intelephense](https://open-vsx.org/vscode/item?itemName=bmewburn.vscode-intelephense-client)
 
-## Documentation
+[Git Blame](https://open-vsx.org/vscode/item?itemName=waderyan.gitblame) | 
+[Git Lens](https://open-vsx.org/vscode/item?itemName=eamodio.gitlens)
 
-[Lien vers documentations externes ou documentation embarquée ici avec table des matières]
+[Laravel](https://open-vsx.org/vscode/item?itemName=laravel.vscode-laravel) | 
+[Laravel Goto Components](https://open-vsx.org/vscode/item?itemName=MrChetan.goto-laravel-components) | 
+[Laravel Intellisense](https://open-vsx.org/vscode/item?itemName=mohamedbenhida.laravel-intellisense) | 
+[Laravel Snippets](https://open-vsx.org/vscode/item?itemName=onecentlin.laravel5-snippets) 
+
 
 ## Gestion des versions
 
 Afin de maintenir un cycle de publication claire et de favoriser la rétrocompatibilité, la dénomination des versions suit la spécification décrite par la [Gestion sémantique de version](https://semver.org/lang/fr/)
 
-Les versions disponibles ainsi que les journaux décrivant les changements apportés sont disponibles depuis [la page des Releases][mettre le lien ici].
-
-## Licence
-
-Voir le fichier [LICENSE](./LICENSE.md) du dépôt.
+Les versions disponibles ainsi que les journaux décrivant les changements apportés sont disponibles depuis [la page des Releases](https://github.com/C2SU/qcmed-filament/releases).

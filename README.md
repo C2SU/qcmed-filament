@@ -2,8 +2,6 @@
 
 ## À propos
 
-<script src="https://kit.fontawesome.com/ba53b41613.js" crossorigin="anonymous"></script>
-
 <span style="font-weight:bold">L'alternative gratuite à ECNi, Hypocampus et Asclépia !</span>
 <p style = "text-align: justify">
 QCMED est un projet de banque de QCMs par des étudiants en médecine, pour des étudiants en médecine!
@@ -91,7 +89,7 @@ Le tutoriel pour le déploiement arrivera dès qu'une version bêta-test sera di
 
 ## Contribution
 
-Pour contribuer au code vous pouvez nous contacter sur [Facebook <i class="fab facebook"></i>](https://www.facebook.com/ragy.edward.9), [Instagram](https://www.instagram.com/ragyedward/), [Mail](ragyedward2001@gmail.com), [Discord](ragy6511)
+Pour contribuer au code vous pouvez nous contacter sur [Facebook](https://www.facebook.com/ragy.edward.9), [Instagram](https://www.instagram.com/ragyedward/), [Mail](ragyedward2001@gmail.com), [Discord](ragy6511)
 
 Vous pouvez consulter notre document pour les guidelines pour [contribuer](CONTRIBUTING.md)
 
