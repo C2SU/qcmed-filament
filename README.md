@@ -3,7 +3,7 @@
 
 ## À propos
 
-![social preview](QCMED social preview.png)
+![social preview](QCMED_social_preview.png)
 
 <span style="font-weight:bold">L'alternative gratuite aux prépas EDN en ligne!</span>
 <p style = "text-align: justify">
