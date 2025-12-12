@@ -3,7 +3,9 @@
 
 ## À propos
 
-<span style="font-weight:bold">L'alternative gratuite à ECNi, Hypocampus et Asclépia !</span>
+![social preview](QCMED social preview.png)
+
+<span style="font-weight:bold">L'alternative gratuite aux prépas EDN en ligne!</span>
 <p style = "text-align: justify">
 QCMED est un projet de banque de QCMs par des étudiants en médecine, pour des étudiants en médecine!
 Notre objectif est de créer une plateforme <span style="font-weight:bold">gratuite</span> que les différents tutorats des années supérieurs pourront utiliser pour proposer des questions et des dossiers progressifs à leurs étudiants.
