@@ -25,7 +25,7 @@ Pour l'instant l'équipe est composée d'étudiants en médecine amateurs d'info
 
 ## Installation
 
-Pensez à bien avoir les dernières versions de php et de composer sur votre appareil!
+Pensez à bien avoir la dernière version de composer et php version 8.4 avec toutes ses dépendances sur votre appareil!
 
 ### Cloner le dépôt distant
 
@@ -33,7 +33,7 @@ Pensez à bien avoir les dernières versions de php et de composer sur votre app
 git clone https://github.com/QCMED/qcmed.git
 ```
 
-### Après avoir téléchargé le dépôt git (pour Linux et WSL)
+### Après avoir téléchargé le dépôt git
 
 1. Copier le fichier environnement à partir du fichier de base:
 
