@@ -27,9 +27,9 @@ class QuestionFactory extends Factory
                     ];
         }
 
-        $json = json_encode($expected_answer_array, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); 
-        //Bon ça ne marche PAS dans le json tous les " sont précédés par un \ et ça casse tout dans les pages edit
-        //A fix sans urgences
+        $json = json_encode($expected_answer_array, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        // Bon ça ne marche PAS dans le json tous les " sont précédés par un \ et ça casse tout dans les pages edit
+        // A fix sans urgences
 
         return [
             'user_id' => User::exists() ? User::inRandomOrder()->first() : User::factory(),
