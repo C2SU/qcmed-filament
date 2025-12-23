@@ -95,7 +95,7 @@ Le tutoriel pour le déploiement arrivera dès qu'une version bêta-test sera di
 
 ## Contribution
 
-Pour contribuer au code vous pouvez nous contacter sur [Facebook](https://www.facebook.com/ragy.edward.9), [Instagram](https://www.instagram.com/ragyedward/), [Mail](ragyedward2001@gmail.com), [Discord](ragy6511)
+Pour contribuer au code vous pouvez nous contacter sur [Facebook](https://www.facebook.com/ragy.edward.9), [Instagram](https://www.instagram.com/ragyedward/), [Mail](ragyedward2001@gmail.com), [Discord](https://discord.gg/DAsceBzrqH)
 
 Vous pouvez consulter notre document pour les guidelines pour [contribuer](CONTRIBUTING.md)
 
