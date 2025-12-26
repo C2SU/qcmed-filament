@@ -55,6 +55,7 @@ class StudentPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/student/theme.css');
     }
 }
