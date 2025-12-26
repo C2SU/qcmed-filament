@@ -28,20 +28,20 @@
             }
         @endphp 
         
-        <div class="border-2 rounded-lg" style="background-color:{{ $bgColor /* Aucune idée de pourquoi "p-1.5" ne marche pas*/}}; padding:5px">  
+        <div class="p-1.5 border-2 rounded-lg" style="background-color:{{ $bgColor}}; ">  
 
                 @if($icon) 
-                    <span class="font-bold text-xl shrink-0">{{ $icon }}</span>
+                    <span class="font-bold text-lg shrink-0">{{ $icon }}</span>
                 @endif
                 
 
  
-                        <span class="font-bold text-2xl">{{ $letter }}.</span>
-                        <span class="text-2xl">{{ $answer['proposition'] }}</span>
+                        <span class="font-bold text-lg">{{ $letter }}.</span>
+                        <span class="text-lg">{{ $answer['proposition'] }}</span>
 
                     
                     @if(!empty($answer['correction']))
-                        <p class="mt-2 p-8 font-bold text-gray-700 text-2xl">
+                        <p class="mt-2 font-bold text-gray-700 text-md">
                             {{ $answer['correction'] }}
                         </p>
                     @endif
