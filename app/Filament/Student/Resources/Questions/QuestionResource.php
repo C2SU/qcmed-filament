@@ -11,6 +11,7 @@ use App\Models\Question;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\TextSize;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,25 +34,12 @@ class QuestionResource extends Resource
     {
         return $schema
             ->components([
-                \Filament\Schemas\Components\Section::make('Informations')
-                    ->schema([
-                        \Filament\Schemas\Components\Text::make('info')
-                            ->content(fn ($record) => 'Item: '.($record->chapter?->numero ?? '-').' | Type: '.match (strval($record->type)) {
-                                '0' => 'QCM/QRU/QRP',
-                                '1' => 'QROC',
-                                '2' => 'QZONE',
-                                default => 'Inconnu'
-                            }),
-                    ]),
-
-                \Filament\Schemas\Components\Section::make('Énoncé')
-                    ->schema([
-                        \Filament\Schemas\Components\Html::make(fn ($record) => $record->body),
-                    ]),
-
                 \Filament\Schemas\Components\Section::make('Correction')
                     ->schema([
-                        \Filament\Schemas\Components\View::make('filament.forms.components.question-correction')
+                         \Filament\Schemas\Components\Text::make(fn ($record) => $record->body)
+                            ->size(TextSize::Large),
+                    
+                         \Filament\Schemas\Components\View::make('filament.forms.components.question-correction')
                             ->viewData(fn ($record) => [
                                 'expected_answer' => $record->expected_answer,
                                 'user_answer' => \App\Models\Attempt::where('question_id', $record->id)
@@ -60,7 +48,7 @@ class QuestionResource extends Resource
                                     ->first()?->answers ?? [],
                             ]),
                     ])
-                    ->visible(fn ($record) => strval($record->type) === '0'),
+                    ->columnSpanFull()
             ]);
     }
 
